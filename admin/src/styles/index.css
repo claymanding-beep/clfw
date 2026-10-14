@@ -1,0 +1,159 @@
+:root {
+  /* Brand colors - derived from hospital logo */
+  --color-primary: #0050A0;
+  --color-primary-dark: #003080;
+  --color-primary-light: #EAF3FC;
+  
+  /* Semantic colors */
+  --color-success: #2BA471;
+  --color-warning: #E6A23C;
+  --color-danger: #D54941;
+  
+  /* Text colors */
+  --color-text: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-disabled: #9CA3AF;
+  
+  /* Border & background */
+  --color-border: #E5E7EB;
+  --color-bg: #F5F7FA;
+  --color-bg-white: #FFFFFF;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  
+  /* Font */
+  --font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 13px;
+  --font-size-lg: 15px;
+  --font-size-xl: 17px;
+  
+  /* Layout dimensions */
+  --sidebar-width: 216px;
+  --sidebar-narrow-width: 180px;
+  --sidebar-collapsed-width: 64px;
+  --topbar-height: 56px;
+  --table-row-height: 36px;
+  --table-row-comfort: 44px;
+  --dialog-max-width: min(900px, 90vw);
+  --drawer-max-width: min(600px, 70vw);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+input {
+  outline: none;
+  font-family: inherit;
+}
+
+/* Utility classes */
+.text-primary { color: var(--color-primary); }
+.text-danger { color: var(--color-danger); }
+.text-warning { color: var(--color-warning); }
+.text-success { color: var(--color-success); }
+
+.bg-primary { background: var(--color-primary); }
+.bg-primary-light { background: var(--color-primary-light); }
+.bg-danger { background: var(--color-danger); }
+.bg-success { background: var(--color-success); }
+.bg-warning { background: var(--color-warning); }
+
+/* ---------- 响应式断点 ---------- */
+
+/* 中等屏幕：侧边栏缩窄（仍显示文字） */
+@media (max-width: 1440px) {
+  :root {
+    --sidebar-width: var(--sidebar-narrow-width);
+  }
+}
+
+/* 小屏幕：顶栏压缩 */
+@media (max-width: 1366px) {
+  :root {
+    --topbar-height: 48px;
+  }
+}
+
+/* 超小宽度：侧边栏折叠为图标模式 */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: var(--sidebar-collapsed-width);
+  }
+}
+
+/* 低高度屏幕：进一步压缩 tabs 和间距 */
+@media (max-height: 800px) {
+  :root {
+    --tabs-height: 32px;
+    --crumb-padding: 6px 16px 0;
+    --content-padding-top: 10px;
+    --content-padding-bottom: 16px;
+    --content-gap: 10px;
+  }
+}
+
+/* 低分辨率提示条 */
+.low-res-warning {
+  display: none;
+  background: var(--color-warning);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 20px;
+  text-align: center;
+  position: relative;
+}
+.low-res-warning .close-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: .8;
+}
+.low-res-warning .close-btn:hover { opacity: 1; }
+
+@media (max-width: 1280px) {
+  .low-res-warning { display: block; }
+}
+
+/* 720p 等低高度屏幕：隐藏提示条，纵向空间优先 */
+@media (max-height: 768px) {
+  .low-res-warning { display: none !important; }
+}

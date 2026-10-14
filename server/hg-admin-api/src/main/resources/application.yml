@@ -1,0 +1,70 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: hg-admin-api
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 20MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.hg.**.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# Sa-Token 配置
+sa-token:
+  token-name: Authorization
+  timeout: 86400
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: uuid
+  is-log: false
+  is-read-cookie: false
+  is-read-header: true
+  token-prefix: Bearer
+
+# Knife4j 文档
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+# 敏感数据加密（手机号等字段落库 AES 加密）。生产环境请通过环境变量覆盖，且各服务保持一致
+hg:
+  crypto:
+    aes-key: HgHealth@2026Key
+  # 日志归档：将超过保留天数的操作/登录日志转移到 *_his 历史表并从主表删除（默认关闭）
+  log:
+    archive:
+      enabled: false
+      retention-days: 90
+      cron: "0 0 2 * * ?"

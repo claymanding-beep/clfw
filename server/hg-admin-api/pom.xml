@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.hg</groupId>
+        <artifactId>health-guardian</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>hg-admin-api</artifactId>
+    <packaging>jar</packaging>
+    <description>管理后台 REST 接口聚合层（可启动）</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hg</groupId>
+            <artifactId>hg-auth</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>hg-admin-api</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.hg.admin.HgAdminApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

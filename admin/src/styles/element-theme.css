@@ -1,0 +1,65 @@
+/* =============================================================
+ * Element Plus 主题覆盖 —— 对齐 HIS 风格主题色板
+ * 主色 #0050A0（与 --color-primary 一致）
+ * ============================================================= */
+:root {
+  --el-color-primary: #0050A0;
+  --el-color-primary-light-3: #4D85BD;
+  --el-color-primary-light-5: #80A8D0;
+  --el-color-primary-light-7: #B3CBE3;
+  --el-color-primary-light-8: #CCD8EC;
+  --el-color-primary-light-9: #E6EAF6;
+  --el-color-primary-dark-2: #004080;
+
+  --el-color-success: #2BA471;
+  --el-color-warning: #E6A23C;
+  --el-color-danger: #D54941;
+  --el-color-error: #D54941;
+
+  --el-border-radius-base: 6px;
+  --el-font-size-base: 13px;
+
+  --el-text-color-primary: #1F2937;
+  --el-text-color-regular: #4B5563;
+  --el-border-color: #E5E7EB;
+}
+
+/* 表格更紧凑，贴合管理后台信息密度 */
+.el-table {
+  font-size: 13px;
+}
+.el-table th.el-table__cell {
+  background: #F5F7FA;
+  color: #1F2937;
+  font-weight: 600;
+}
+
+/* 页面级通用容器 */
+.hg-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hg-search-bar {
+  background: #fff;
+  padding: 16px 16px 0;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+.hg-table-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+.hg-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.hg-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

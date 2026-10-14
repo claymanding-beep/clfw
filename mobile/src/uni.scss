@@ -1,0 +1,33 @@
+/* uni.scss - 全局 SCSS 变量 */
+
+/* 品牌色 - 由官网 Logo 反推 */
+$color-primary: #0050A0;
+$color-primary-dark: #003080;
+$color-primary-light: #EAF3FC;
+
+/* 语义色 */
+$color-success: #2BA471;
+$color-warning: #E6A23C;
+$color-danger: #D54941;
+
+/* 文本色 */
+$color-text: #1F2937;
+$color-text-secondary: #6B7280;
+$color-text-disabled: #9CA3AF;
+
+/* 边框 & 背景 */
+$color-border: #E5E7EB;
+$color-bg: #F5F7FA;
+$color-bg-white: #FFFFFF;
+
+/* 间距 */
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+/* 圆角 */
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
