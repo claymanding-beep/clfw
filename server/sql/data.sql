@@ -2,21 +2,21 @@
 -- 系统管理域 - 初始化种子数据
 -- 默认管理员账号: admin / 123456
 -- =============================================================
-USE `health_guardian`;
+USE `clfw`;
 
 -- ----------------------------
 -- 机构
 -- ----------------------------
 INSERT INTO `sys_org` (`id`, `parent_id`, `org_name`, `org_code`, `org_type`, `leader`, `phone`, `order_num`, `status`, `create_by`, `create_time`, `deleted`)
-VALUES (1, 0, '济宁市公共卫生医疗中心', 'ORG_ROOT', 1, '管理员', '0537-0000000', 1, 1, 'system', NOW(), 0);
+VALUES (1, 0, '根机构', 'ORG_ROOT', 1, '管理员', '0537-0000000', 1, 1, 'system', NOW(), 0);
 
 -- ----------------------------
 -- 科室
 -- ----------------------------
 INSERT INTO `sys_dept` (`id`, `org_id`, `parent_id`, `dept_name`, `dept_code`, `order_num`, `status`, `create_by`, `create_time`, `deleted`)
-VALUES (1, 1, 0, '内分泌科', 'DEPT_NFM', 1, 1, 'system', NOW(), 0),
-       (2, 1, 0, '心血管内科', 'DEPT_XXG', 2, 1, 'system', NOW(), 0),
-       (3, 1, 0, '健康管理中心', 'DEPT_JKGL', 3, 1, 'system', NOW(), 0);
+VALUES (1, 1, 0, '部门1', 'DEPT_NFM', 1, 1, 'system', NOW(), 0),
+       (2, 1, 0, '部门2', 'DEPT_XXG', 2, 1, 'system', NOW(), 0),
+       (3, 1, 0, '部门3', 'DEPT_JKGL', 3, 1, 'system', NOW(), 0);
 
 -- ----------------------------
 -- 用户（密码均为 123456 的 BCrypt 密文）
@@ -29,12 +29,7 @@ VALUES (1, 'admin', '$2a$10$wHcgzavqMXGzV5LJcvs/buqGLvbYWKegUCFlfSAtbF2gbcd5zn3z
 -- ----------------------------
 INSERT INTO `sys_role` (`id`, `role_name`, `role_key`, `role_sort`, `data_scope`, `status`, `create_by`, `create_time`, `deleted`, `remark`)
 VALUES (1, '超级管理员', 'super_admin', 1, 1, 1, 'system', NOW(), 0, '拥有全部权限'),
-       (2, '机构管理员', 'org_admin', 2, 3, 1, 'system', NOW(), 0, '本机构数据管理'),
-       (3, '科室主任', 'dept_director', 3, 4, 1, 'system', NOW(), 0, '本科室数据管理'),
-       (4, '医生', 'doctor', 4, 5, 1, 'system', NOW(), 0, '本人负责的患者'),
-       (5, '护士', 'nurse', 5, 5, 1, 'system', NOW(), 0, ''),
-       (6, '健康管理师', 'health_manager', 6, 4, 1, 'system', NOW(), 0, ''),
-       (7, '审核人员', 'auditor', 7, 3, 1, 'system', NOW(), 0, '');
+       (2, '机构管理员', 'org_admin', 2, 3, 1, 'system', NOW(), 0, '本机构数据管理');
 
 -- ----------------------------
 -- 用户角色关联
@@ -102,7 +97,6 @@ INSERT INTO `sys_dict_type` (`id`, `dict_name`, `dict_type`, `status`, `create_b
 VALUES (1, '用户性别', 'sys_user_sex', 1, 'system', NOW(), 0, '用户性别列表'),
        (2, '通用状态', 'sys_common_status', 1, 'system', NOW(), 0, '启用停用状态'),
        (3, '是否', 'sys_yes_no', 1, 'system', NOW(), 0, '是否列表'),
-       (4, '机构类型', 'sys_org_type', 1, 'system', NOW(), 0, '医疗机构类型'),
        (5, '菜单类型', 'sys_menu_type', 1, 'system', NOW(), 0, '菜单目录按钮类型');
 
 -- ----------------------------
@@ -116,9 +110,6 @@ VALUES (100, 'sys_user_sex', '未知', '0', 1, 'info', 1, 'system', NOW(), 0),
        (111, 'sys_common_status', '停用', '0', 2, 'danger', 1, 'system', NOW(), 0),
        (120, 'sys_yes_no', '是', '1', 1, 'success', 1, 'system', NOW(), 0),
        (121, 'sys_yes_no', '否', '0', 2, 'info', 1, 'system', NOW(), 0),
-       (130, 'sys_org_type', '牵头医院', '1', 1, 'primary', 1, 'system', NOW(), 0),
-       (131, 'sys_org_type', '成员单位', '2', 2, 'success', 1, 'system', NOW(), 0),
-       (132, 'sys_org_type', '基层卫生院', '3', 3, 'info', 1, 'system', NOW(), 0),
        (140, 'sys_menu_type', '目录', 'M', 1, 'warning', 1, 'system', NOW(), 0),
        (141, 'sys_menu_type', '菜单', 'C', 2, 'primary', 1, 'system', NOW(), 0),
        (142, 'sys_menu_type', '按钮', 'F', 3, 'info', 1, 'system', NOW(), 0);

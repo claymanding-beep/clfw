@@ -1,7 +1,7 @@
 <template>
-  <div class="hg-page">
+  <div class="clfwpage">
     <!-- 搜索栏 -->
-    <el-form :inline="true" :model="query" class="hg-search-bar" @submit.prevent>
+    <el-form :inline="true" :model="query" class="clfwsearch-bar" @submit.prevent>
       <el-form-item label="用户名">
         <el-input v-model="query.username" placeholder="请输入用户名" clearable style="width: 160px" @keyup.enter="handleSearch" />
       </el-form-item>
@@ -24,8 +24,8 @@
     </el-form>
 
     <!-- 表格卡片 -->
-    <div class="hg-table-card">
-      <div class="hg-toolbar">
+    <div class="clfwtable-card">
+      <div class="clfwtoolbar">
         <el-button v-if="hasPerm('system:user:add')" type="primary" :icon="Plus" @click="openDialog()">新增</el-button>
         <el-button v-if="hasPerm('system:user:remove')" type="danger" :icon="Delete" :disabled="!selection.length" @click="handleBatchDelete">批量删除</el-button>
       </div>
@@ -55,7 +55,7 @@
         </el-table-column>
       </el-table>
 
-      <div class="hg-pagination">
+      <div class="clfwpagination">
         <el-pagination v-model:current-page="query.pageNum" v-model:page-size="query.pageSize"
           :total="total" :page-sizes="[10, 20, 50, 100]"
           layout="total, sizes, prev, pager, next, jumper" @size-change="loadData" @current-change="loadData" />

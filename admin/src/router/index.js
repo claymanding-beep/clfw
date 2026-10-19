@@ -25,37 +25,6 @@ const routes = [
         component: () => import('@/views/profile/index.vue'),
         meta: { title: '个人中心' }
       },
-      // ---------------- 用户档案与画像管理（占位页） ----------------
-      {
-        path: 'patient/health-record',
-        name: 'HealthRecord',
-        component: () => import('@/views/patient/HealthRecord.vue'),
-        meta: { title: '用户健康档案' }
-      },
-      {
-        path: 'patient/health-profile',
-        name: 'HealthProfile',
-        component: () => import('@/views/patient/HealthProfile.vue'),
-        meta: { title: '用户健康画像' }
-      },
-      {
-        path: 'patient/disease-archive',
-        name: 'DiseaseArchive',
-        component: () => import('@/views/patient/DiseaseArchive.vue'),
-        meta: { title: '慢病专档管理' }
-      },
-      {
-        path: 'patient/doctor-patient',
-        name: 'DoctorPatient',
-        component: () => import('@/views/patient/DoctorPatient.vue'),
-        meta: { title: '医患关系管理' }
-      },
-      {
-        path: 'patient/user-contract',
-        name: 'UserContract',
-        component: () => import('@/views/patient/UserContract.vue'),
-        meta: { title: '用户签约管理' }
-      },
       // ---------------- 系统管理 ----------------
       {
         path: 'system/user',
@@ -126,13 +95,13 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
 // 登录守卫：无 token 一律跳转登录页
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title || '健康守护体系'} - 健康守护体系`
+  document.title = `${to.meta.title || 'CLFW'} - CLFW 管理平台`
   const token = localStorage.getItem('token')
   if (to.meta.anonymous) {
     // 已登录访问登录页，直接进首页

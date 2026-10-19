@@ -1,5 +1,5 @@
 <template>
-  <div class="hg-page profile-page">
+  <div class="clfwpage profile-page">
     <el-row :gutter="16">
       <!-- 左侧：账号概览 -->
       <el-col :span="7">

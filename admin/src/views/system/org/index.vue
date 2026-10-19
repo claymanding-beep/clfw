@@ -1,7 +1,7 @@
 <template>
-  <div class="hg-page">
-    <div class="hg-table-card">
-      <div class="hg-toolbar">
+  <div class="clfwpage">
+    <div class="clfwtable-card">
+      <div class="clfwtoolbar">
         <el-button v-if="hasPerm('system:org:add')" type="primary" :icon="Plus" @click="openDialog()">新增</el-button>
         <el-button :icon="Sort" @click="toggleExpand">展开/折叠</el-button>
       </div>

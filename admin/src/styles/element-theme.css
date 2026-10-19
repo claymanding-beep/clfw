@@ -35,30 +35,30 @@
 }
 
 /* 页面级通用容器 */
-.hg-page {
+.clfw-page {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.hg-search-bar {
+.clfw-search-bar {
   background: #fff;
   padding: 16px 16px 0;
   border-radius: 6px;
   border: 1px solid var(--color-border);
 }
-.hg-table-card {
+.clfw-table-card {
   background: #fff;
   padding: 16px;
   border-radius: 6px;
   border: 1px solid var(--color-border);
 }
-.hg-toolbar {
+.clfw-toolbar {
   display: flex;
   gap: 8px;
   margin-bottom: 12px;
   flex-wrap: wrap;
 }
-.hg-pagination {
+.clfw-pagination {
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;

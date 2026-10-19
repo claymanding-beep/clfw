@@ -1,6 +1,6 @@
 <template>
-  <div class="hg-page">
-    <el-form :inline="true" :model="query" class="hg-search-bar" @submit.prevent>
+  <div class="clfwpage">
+    <el-form :inline="true" :model="query" class="clfwsearch-bar" @submit.prevent>
       <el-form-item label="登录IP">
         <el-input v-model="query.ip" placeholder="请输入登录IP" clearable style="width: 180px" @keyup.enter="handleSearch" />
       </el-form-item>
@@ -13,8 +13,8 @@
       </el-form-item>
     </el-form>
 
-    <div class="hg-table-card">
-      <div class="hg-toolbar">
+    <div class="clfwtable-card">
+      <div class="clfwtoolbar">
         <span class="tip">当前在线 <b>{{ rows.length }}</b> 个会话</span>
         <el-button :icon="Refresh" circle size="small" title="刷新" @click="loadData" />
       </div>
@@ -85,7 +85,7 @@ onMounted(loadData)
 </script>
 
 <style scoped>
-.hg-toolbar { display: flex; align-items: center; justify-content: space-between; }
-.hg-toolbar .tip { font-size: 13px; color: var(--color-text-secondary); }
-.hg-toolbar .tip b { color: var(--color-primary); font-size: 15px; }
+.clfw-toolbar { display: flex; align-items: center; justify-content: space-between; }
+.clfw-toolbar .tip { font-size: 13px; color: var(--color-text-secondary); }
+.clfw-toolbar .tip b { color: var(--color-primary); font-size: 15px; }
 </style>

@@ -9,11 +9,11 @@
     <!-- 顶栏 -->
     <header class="topbar" :style="{ height: 'var(--topbar-height)' }">
       <div class="tb-left">
-        <div class="logo">✚</div>
-        <div class="sys"><b>健康守护体系</b><span v-if="!isNarrow">济宁市公共卫生医疗中心 · 慢病专病全周期一体化</span></div>
+        <div class="logo">C</div>
+        <div class="sys"><b>{{ appTitle }}</b><span v-if="!isNarrow">{{ appSubtitle }}</span></div>
       </div>
       <div class="tb-right">
-        <div class="org-chip">本院（医共体牵头） ▾</div>
+        <div class="org-chip" v-if="userStore.user?.orgName">{{ userStore.user.orgName }}</div>
         <div class="bell">🔔<i v-if="unreadCount">{{ unreadCount }}</i></div>
         <div class="user-wrap">
           <div class="user" @click="userDropdownVisible = !userDropdownVisible">
@@ -138,15 +138,9 @@ const hoveredIndex = ref(null)
 const popupTop = ref(0)
 let hideTimer = null
 
-// 菜单名称 → 路由映射
-const menuRouteMap = {
-  '工作台': '/dashboard',
-  '用户健康档案': '/patient/health-record',
-  '用户健康画像': '/patient/health-profile',
-  '慢病专档管理': '/patient/disease-archive',
-  '医患关系管理': '/patient/doctor-patient',
-  '用户签约管理': '/patient/user-contract'
-}
+// 品牌信息（环境变量配置）
+const appTitle = import.meta.env.VITE_APP_TITLE || 'CLFW 管理平台'
+const appSubtitle = import.meta.env.VITE_APP_SUBTITLE || '基础功能管理'
 
 // 多标签页状态
 const openTabs = ref([{ title: '工作台', path: '/dashboard' }])
@@ -306,29 +300,15 @@ const mainMarginLeft = computed(() => {
 
 // 角色标识 -> 中文
 const roleNameMap = {
-  super_admin: '超级管理员', org_admin: '机构管理员', dept_director: '科室主任',
-  doctor: '医生', nurse: '护士', health_manager: '健康管理师', auditor: '审核人员'
+  super_admin: '超级管理员', org_admin: '机构管理员', dept_admin: '部门管理员'
 }
 const userInfo = computed(() => ({
   name: userStore.nickname,
   role: userStore.isSuperAdmin ? '超级管理员' : (roleNameMap[userStore.roles?.[0]] || userStore.roles?.[0] || '—')
 }))
 
-// 业务占位菜单：名称 -> 路由（多数暂未开放）
-function toItems(names) {
-  return names.map(n => ({ name: n, path: menuRouteMap[n] || null }))
-}
-
-const menuGroups = reactive([
-  {
-    title: '基础支撑与配置管理', open: false,
-    items: toItems(['医疗机构管理', '权限管理', '服务团队管理', '资料库管理', '批量消息通知', '指标预警配置', '服务项目管理', '任务模板管理', '履约规则配置', '问卷管理', '自定义标签'])
-  },
-  { title: '用户档案与画像管理', open: false, items: toItems(['用户健康档案', '用户健康画像', '慢病专档管理', '医患关系管理', '用户签约管理']) },
-  { title: '数据接入与处理', open: false, items: toItems(['HIS/LIS数据对接', '检验检查报告管理', '用药信息管理']) },
-  { title: '干预与随访管理', open: false, items: toItems(['健康干预（健康处方）', '用药方案管理', '服务任务管理', '随访管理', '复诊提醒', '异常提醒']) },
-  { title: '评估、筛查与统计分析', open: false, items: toItems(['用户健康评估报告', '慢病评估报告生成', '并发症筛查', '用户数据统计', '用户服务统计', '数据大屏', '标签自动更新']) }
-])
+// 菜单分组（由后端动态加载，初始为空）
+const menuGroups = reactive([])
 
 // 从后端路由树构建系统管理菜单分组
 function resolvePath(base, path) {

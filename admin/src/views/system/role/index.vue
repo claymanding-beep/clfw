@@ -1,7 +1,7 @@
 <template>
-  <div class="hg-page">
-    <div class="hg-table-card">
-      <div class="hg-toolbar">
+  <div class="clfwpage">
+    <div class="clfwtable-card">
+      <div class="clfwtoolbar">
         <el-button v-if="hasPerm('system:role:add')" type="primary" :icon="Plus" @click="openDialog()">新增</el-button>
         <el-button v-if="hasPerm('system:role:remove')" type="danger" :icon="Delete" :disabled="!selection.length" @click="handleBatchDelete">批量删除</el-button>
       </div>
@@ -29,7 +29,7 @@
         </el-table-column>
       </el-table>
 
-      <div class="hg-pagination">
+      <div class="clfwpagination">
         <el-pagination v-model:current-page="query.pageNum" v-model:page-size="query.pageSize"
           :total="total" :page-sizes="[10, 20, 50]"
           layout="total, sizes, prev, pager, next, jumper" @size-change="loadData" @current-change="loadData" />
@@ -90,7 +90,7 @@
         <el-table-column prop="createTime" label="创建时间" min-width="160" />
         <template #empty>该角色暂无关联用户</template>
       </el-table>
-      <div class="hg-pagination">
+      <div class="clfwpagination">
         <el-pagination v-model:current-page="userQuery.pageNum" v-model:page-size="userQuery.pageSize"
           :total="userTotal" :page-sizes="[10, 20, 50]"
           layout="total, sizes, prev, pager, next" @size-change="loadRoleUsers" @current-change="loadRoleUsers" />

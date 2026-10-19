@@ -1,7 +1,7 @@
 <template>
   <div class="dict-page">
     <!-- 左：字典类型 -->
-    <div class="hg-table-card panel">
+    <div class="clfwtable-card panel">
       <div class="panel-title">字典类型</div>
       <el-form :inline="true" @submit.prevent>
         <el-form-item>
@@ -29,14 +29,14 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="hg-pagination">
+      <div class="clfwpagination">
         <el-pagination small v-model:current-page="typeQuery.pageNum" v-model:page-size="typeQuery.pageSize"
           :total="typeTotal" layout="total, prev, pager, next" @current-change="loadTypes()" />
       </div>
     </div>
 
     <!-- 右：字典数据 -->
-    <div class="hg-table-card panel">
+    <div class="clfwtable-card panel">
       <div class="panel-title">
         字典数据
         <span v-if="currentType" class="cur-type">（{{ currentType.dictName }} · {{ currentType.dictType }}）</span>
@@ -68,7 +68,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="hg-pagination">
+      <div class="clfwpagination">
         <el-pagination small v-model:current-page="dataQuery.pageNum" v-model:page-size="dataQuery.pageSize"
           :total="dataTotal" layout="total, prev, pager, next" @current-change="loadData()" />
       </div>

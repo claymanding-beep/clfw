@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.189:8099/clfw?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: MYSQL@maryun.net
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      connection-timeout: 30000
+      max-lifetime: 1200000
+
+  data:
+    redis:
+      host: 192.168.1.189
+      port: 7000
+      database: 15
+      password: maryun
+      timeout: 5000ms
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+
+# 日志级别
+logging:
+  level:
+    root: info
+    com.clfw: debug
+
+# MinIO 对象存储
+minio:
+  endpoint: http://192.168.1.184:9000
+  access-key: maryun
+  secret-key: MARYUNMARYUN
+  bucket-name: maryun
+  # 对外访问地址前缀（返回给前端的 URL），为空则用 endpoint
+  domain: http://192.168.1.184:9000
+  # 单文件大小上限（字节），默认 10MB
+  max-size: 10485760
+  # 允许上传的扩展名
+  allowed-extensions: jpg,jpeg,png,gif,bmp,webp,doc,docx,xls,xlsx,pdf,ppt,pptx,txt,zip,rar

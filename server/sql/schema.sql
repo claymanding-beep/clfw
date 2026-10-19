@@ -1,12 +1,12 @@
 -- =============================================================
--- 慢病专病全周期一体化健康守护体系 - 系统管理域建表脚本
+-- CLFW Platform - 系统管理域建表脚本
 -- 数据库: MySQL 8.0  字符集: utf8mb4
 -- 设计原则: 公共字段 / org_id 数据隔离 / 逻辑删除 / 字典驱动 / 无外键约束
 -- =============================================================
 
-CREATE DATABASE IF NOT EXISTS `health_guardian`
+CREATE DATABASE IF NOT EXISTS `clfw`
     DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `health_guardian`;
+USE `clfw`;
 
 -- ----------------------------
 -- 机构表
@@ -299,3 +299,29 @@ CREATE TABLE `sys_login_log_his` (
     PRIMARY KEY (`id`),
     KEY `idx_login_log_his_time` (`login_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='登录日志归档表';
+
+-- ----------------------------
+-- 社会化登录用户表（C 端用户，区别于 sys_user）
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_social_user`;
+CREATE TABLE `sys_social_user` (
+    `id`          BIGINT       NOT NULL COMMENT '主键',
+    `open_id`     VARCHAR(64)  NOT NULL COMMENT '第三方平台 openid',
+    `union_id`    VARCHAR(64)  DEFAULT NULL COMMENT '微信 unionid（跨应用唯一）',
+    `platform`    VARCHAR(20)  NOT NULL COMMENT '平台: WECHAT_MINI / WECHAT_OAUTH / SMS',
+    `nickname`    VARCHAR(64)  DEFAULT NULL COMMENT '昵称',
+    `avatar_url`  VARCHAR(512) DEFAULT NULL COMMENT '头像 URL',
+    `phone`       VARCHAR(255) DEFAULT NULL COMMENT '手机号（AES 加密存储）',
+    `user_id`     BIGINT       DEFAULT NULL COMMENT '关联的 sys_user.id（可选绑定）',
+    `status`      TINYINT      DEFAULT 1 COMMENT '状态(1正常 0禁用)',
+    `create_by`   VARCHAR(64)  DEFAULT NULL COMMENT '创建人',
+    `create_time` DATETIME     DEFAULT NULL COMMENT '创建时间',
+    `update_by`   VARCHAR(64)  DEFAULT NULL COMMENT '更新人',
+    `update_time` DATETIME     DEFAULT NULL COMMENT '更新时间',
+    `deleted`     TINYINT(1)   DEFAULT 0 COMMENT '逻辑删除(0正常 1删除)',
+    `remark`      VARCHAR(500) DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_platform_openid` (`platform`, `open_id`),
+    KEY `idx_social_union_id` (`union_id`),
+    KEY `idx_social_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='社会化登录用户表';

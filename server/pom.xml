@@ -4,21 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hg</groupId>
-    <artifactId>health-guardian</artifactId>
-    <version>1.0.0</version>
+    <groupId>com.clfw</groupId>
+    <artifactId>clay-framework</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>health-guardian</name>
-    <description>慢病专病全周期一体化健康守护体系 - 后端</description>
+    <name>clay-framework</name>
+    <description>基础框架 - 后端</description>
 
     <modules>
-        <module>hg-common</module>
-        <module>hg-framework</module>
-        <module>hg-system</module>
-        <module>hg-org</module>
-        <module>hg-auth</module>
-        <module>hg-admin-api</module>
-        <module>hg-mobile-api</module>
+        <module>clfw-common</module>
+        <module>clfw-framework</module>
+        <module>clfw-system</module>
+        <module>clfw-org</module>
+        <module>clfw-auth</module>
+        <module>clfw-social</module>
+        <module>clfw-admin-api</module>
+        <module>clfw-mobile-api</module>
     </modules>
 
     <properties>
@@ -35,7 +36,7 @@
         <hutool.version>5.8.27</hutool.version>
         <mysql.version>8.3.0</mysql.version>
         <lombok.version>1.18.30</lombok.version>
-        <revision>1.0.0</revision>
+        <revision>1.0.0-SNAPSHOT</revision>
     </properties>
 
     <dependencyManagement>
@@ -91,28 +92,33 @@
 
             <!-- 内部模块 -->
             <dependency>
-                <groupId>com.hg</groupId>
-                <artifactId>hg-common</artifactId>
+                <groupId>com.clfw</groupId>
+                <artifactId>clfw-common</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.hg</groupId>
-                <artifactId>hg-framework</artifactId>
+                <groupId>com.clfw</groupId>
+                <artifactId>clfw-framework</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.hg</groupId>
-                <artifactId>hg-system</artifactId>
+                <groupId>com.clfw</groupId>
+                <artifactId>clfw-system</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.hg</groupId>
-                <artifactId>hg-org</artifactId>
+                <groupId>com.clfw</groupId>
+                <artifactId>clfw-org</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>com.hg</groupId>
-                <artifactId>hg-auth</artifactId>
+                <groupId>com.clfw</groupId>
+                <artifactId>clfw-auth</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.clfw</groupId>
+                <artifactId>clfw-social</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>
@@ -132,6 +138,15 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <!-- GitHub Packages 发布配置 -->
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/claymanding-beep/health-guardian</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <pluginManagement>

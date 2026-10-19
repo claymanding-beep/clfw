@@ -1,6 +1,6 @@
 <template>
-  <div class="hg-page">
-    <el-form :inline="true" class="hg-search-bar" @submit.prevent>
+  <div class="clfwpage">
+    <el-form :inline="true" class="clfwsearch-bar" @submit.prevent>
       <el-form-item label="所属机构">
         <el-select v-model="filterOrgId" placeholder="全部机构" clearable style="width: 220px" @change="loadData">
           <el-option v-for="o in orgOptions" :key="o.id" :label="o.label" :value="o.id" />
@@ -8,8 +8,8 @@
       </el-form-item>
     </el-form>
 
-    <div class="hg-table-card">
-      <div class="hg-toolbar">
+    <div class="clfwtable-card">
+      <div class="clfwtoolbar">
         <el-button v-if="hasPerm('system:dept:add')" type="primary" :icon="Plus" @click="openDialog()">新增</el-button>
       </div>
 
